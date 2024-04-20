@@ -1,40 +1,50 @@
-function menuPrincipal(){
-let opcion  
-let total = 0
+const productos = [
+    { nombre: "Whisky Bourbon", precio: 5000 },
+    { nombre: "Whisky Irlandés", precio: 4500 },
+    { nombre: "Licores Frutales", precio: 2500 },
+    { nombre: "Gaseosa Lima Limón 500ml", precio: 1200 },
+    { nombre: "Pulpa de Frutilla", precio: 2000 }
+]
 
-do{
-   opcion = Number(prompt("ingrese numero de la opcion:\n1 whisky bourbon $5000\n2 whisky irlandes $4500\n3 licores frutales $2500\n4 gaseosas lima limon 500ml $1200 \n5 pulpa de frutilla $2000 \n0 salir"))
-    if (opcion < 0 || opcion > 5){
-        alert("opcion incorrecta")    
-    } else if (opcion === 1){
-        total = agregarAlCarrito("whisky bourbon", 5000, total) 
-    } else if(opcion === 2){
-        total = agregarAlCarrito("whisky irlandes", 4500, total)
-    } else if (opcion ===3){
-        total = agregarAlCarrito("licores frutales", 2500, total)
-    } else if (opcion === 4){
-        total= agregarAlCarrito("gaseosas lima limon, 500ml", 1200, total)
-    } else if (opcion === 5){
-        total = agregarAlCarrito("pulpas de frutilla", 2000, total)
-    }
-} while (opcion !== 0)
 
-total += calcularIVA(total)
-alert("El total de su compra es de " + total)
+function menuPrincipal(productos) {
 
+    let total = 0
+    const carrito = []
+    
+    
+    do {
+        let menu = ""
+        productos.forEach(function (producto, index) {
+            menu += (index + 1) + ". " + producto.nombre + " $" + producto.precio + "\n"
+        })
+        menu += "0. Salir"
+
+        let opcion = Number(prompt(menu))
+
+        if (opcion === 0) {
+            break
+        } 
+       
+        let cantidad = prompt("ingrese la cantidad que desea comprar")
+
+        const productoSeleccionado = productos[opcion - 1]
+        let subtotal = productoSeleccionado.precio * cantidad
+        total = total + subtotal
+
+        carrito.push({ producto: productoSeleccionado, cantidad })
+        alert("se agregaron " + cantidad + " " + productoSeleccionado.nombre + " al carrito por un total de $" + subtotal)
+
+    } while (true)
+
+    total = total + (total * 0.21)
+
+    
+    let mensaje = ""
+    carrito.forEach(function (item, index) {
+        mensaje += (index + 1) + ". " + item.cantidad + " X " + item.producto.nombre + " $" + item.producto.precio * item.cantidad + "\n"
+    })
+    alert("el total de su compra es de $" + total)
 }
 
-function agregarAlCarrito(bebida, precioPorUnidad, total) {
-    let cantidad = Number(prompt("¿cuantas unidades desea?"))
-    let subtotal = precioPorUnidad * cantidad
-    total = total + subtotal
-    alert("Se agregaron " + bebida + " al carrito por un total de: " + subtotal)
-    alert("Total hasta el momento es: " + total)
-    return total
-}
-
-function calcularIVA(total) {
-    return total * 0.21
-}
-
-menuPrincipal()
+menuPrincipal(productos)
