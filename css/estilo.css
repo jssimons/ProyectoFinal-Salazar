@@ -1,0 +1,141 @@
+h1 {
+    font-size: 3em;
+}
+
+h2 {
+    font-size: 2em;
+
+}
+
+
+p {
+    font-size: 1.25em;
+    color: antiquewhite;
+}
+
+
+button{
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 10px 30px;
+    border-radius: 10px;
+    border: 2px solid rgba(0,0,0,0.5);
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    color: white;
+    background-color: lightgreen;
+
+}
+
+button:hover{
+    background-color: aqua;
+}
+
+
+#productos{
+    background-color: rgb(30, 30, 30);
+    color: whitesmoke;
+    text-align: center;
+}
+
+#productos .contenedor{
+    padding: 150px 12px;
+    display: inline-block;
+}
+
+#productos p{
+    display: block;
+    margin-bottom: 25px;
+}
+
+#productos h2{
+    margin-top: 0;
+}
+
+#productos .carta{
+    background-position: center center;
+    background-size: cover;
+    padding: 50px;
+    margin: 20px;
+    border-radius: 15px;
+   
+}
+
+.carta:first-child{
+    background-image: linear-gradient(0deg, rgba(0,0,0,0.5), 
+    rgba(0,0,0,0.5)
+    )
+    ,url("/img/bourbon.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    
+}
+
+.carta:nth-child(2){
+    background-image: linear-gradient(0deg, rgba(0,0,0,0.5), 
+    rgba(0,0,0,0.5)
+    )
+    ,url("/img/irlandes.jpg");
+    background-position: center center;
+    background-size: cover;
+}
+
+.carta:nth-child(3){
+    background-image: linear-gradient(0deg, rgba(0,0,0,0.5), 
+    rgba(0,0,0,0.5)
+    )
+    ,url("/img/licores.jpg");
+    background-position: center center;
+    background-size: cover;
+}
+
+.carta:nth-child(4){
+    background-image: linear-gradient(0deg, rgba(0,0,0,0.5), 
+    rgba(0,0,0,0.5)
+    )
+    ,url("/img/latas.png");
+    background-position: center center;
+    background-size: cover;
+}
+
+.carta:nth-child(5){
+    background-image: linear-gradient(0deg, rgba(0,0,0,0.5), 
+    rgba(0,0,0,0.5)
+    )
+    ,url("/img/pulpa.jpg");
+    background-position: center center;
+    background-size: cover;
+}
+
+.carta:nth-child(6){
+    background-image: linear-gradient(0deg, rgba(0,0,0,0.5), 
+    rgba(0,0,0,0.5)
+    )
+    ,url("/img/speed.webp");
+    background-position: center center;
+    background-size: cover;
+}
+
+#contenedorCarrito{
+    font-size: 20px;
+    border: 3px antiquewhite solid;
+    border-radius: 3px;
+}
+
+.oculto {
+    display: none !important;
+    
+}
+
+
+.mensaje {
+    display: block;
+    font-size: 25px;
+    color: darkred;
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: lightgreen;
+}
+

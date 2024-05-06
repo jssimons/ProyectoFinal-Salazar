@@ -4,9 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./css/estilo.css">
 </head>
 <body>
     
+    <section id="productos">
+        <div class="contenedor">
+            <h1> Nuestros Productos</h1>
+            <div class="tarjetas">
+                <div class="carta" id="producto-1">
+                    <h2>Whisky Bourbon</h2>
+                    <p>Precio: $5000</p>
+                    <button class="agregar">Agregar Al Carrito</button>
+                </div>
+
+                <div class="carta" id="producto-2">
+                    <h2>Whisky Irlandes</h2>
+                    <p>Precio: $4500</p>
+                    <button class="agregar">Agregar Al Carrito</button>
+                </div>
+
+                <div class="carta" id="producto-3">
+                    <h2>Licores Frutales</h2>
+                    <p>Precio: $2500</p>
+                    <button class="agregar">Agregar Al Carrito</button>
+                </div>
+
+                <div class="carta" id="producto-4">
+                    <h2>Gaseosas 500ml</h2>
+                    <p>Precio: $1200</p>
+                    <button class="agregar">Agregar Al Carrito</button>
+                </div>
+
+                <div class="carta" id="producto-5">
+                    <h2>Pulpa De Frutilla</h2>
+                    <p>Precio: $2000</p>
+                    <button class="agregar">Agregar Al Carrito</button>
+                </div>
+
+                <div class="carta" id="producto-6">
+                    <h2>Energizante</h2>
+                    <p>Precio: $1000</p>
+                    <button class="agregar">Agregar Al Carrito</button>
+                </div>
+
+            </div>
+        </div>
+        
+        <div id="contenedorProductos"></div>
+        <div class="oculto" id="contenedorCarrito"></div>
+        
+        <button id="botonVerOcultar">VER CARRITO</button>
+        <button id="botonComprar">COMPRAR</button>
+    </section>
+
+    <div id="mensajeUsuario" class="mensaje"></div>
+
+
+
 
     <script src="./script.js"> </script>
 </body>
