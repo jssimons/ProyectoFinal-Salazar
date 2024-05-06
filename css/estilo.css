@@ -64,7 +64,7 @@ button:hover{
     background-image: linear-gradient(0deg, rgba(0,0,0,0.5), 
     rgba(0,0,0,0.5)
     )
-    ,url("/img/bourbon.jpg");
+    ,url("../img/bourbon.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -75,7 +75,7 @@ button:hover{
     background-image: linear-gradient(0deg, rgba(0,0,0,0.5), 
     rgba(0,0,0,0.5)
     )
-    ,url("/img/irlandes.jpg");
+    ,url("../img/irlandes.jpg");
     background-position: center center;
     background-size: cover;
 }
@@ -84,7 +84,7 @@ button:hover{
     background-image: linear-gradient(0deg, rgba(0,0,0,0.5), 
     rgba(0,0,0,0.5)
     )
-    ,url("/img/licores.jpg");
+    ,url("../img/licores.jpg");
     background-position: center center;
     background-size: cover;
 }
@@ -93,7 +93,7 @@ button:hover{
     background-image: linear-gradient(0deg, rgba(0,0,0,0.5), 
     rgba(0,0,0,0.5)
     )
-    ,url("/img/latas.png");
+    ,url("../img/latas.png");
     background-position: center center;
     background-size: cover;
 }
@@ -102,7 +102,7 @@ button:hover{
     background-image: linear-gradient(0deg, rgba(0,0,0,0.5), 
     rgba(0,0,0,0.5)
     )
-    ,url("/img/pulpa.jpg");
+    ,url("../img/pulpa.jpg");
     background-position: center center;
     background-size: cover;
 }
@@ -111,7 +111,7 @@ button:hover{
     background-image: linear-gradient(0deg, rgba(0,0,0,0.5), 
     rgba(0,0,0,0.5)
     )
-    ,url("/img/speed.webp");
+    ,url("../img/speed.webp");
     background-position: center center;
     background-size: cover;
 }
