@@ -42,20 +42,20 @@ function menuPrincipal(productos) {
     
     menuPrincipal(productos)  */
 
-const listaDeProductos = [
-    { nombre: "Whisky Bourbon", precio: 5000, stock: 3 },
-    { nombre: "Whisky Irlandes", precio: 4500, stock: 2 },
-    { nombre: "Licores Frutales", precio: 2500, stock: 8 },
-    { nombre: "Gaseosas 500ml", precio: 1200, stock: 10 },
-    { nombre: "Pulpa De Frutilla", precio: 2000, stock: 5 },
-    { nombre: "Energizante", precio: 1000, stock: 6 }
-]
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const contenedorCarrito = document.getElementById("contenedorCarrito")
     const botonVerOcultar = document.getElementById("botonVerOcultar")
     const botonComprar = document.getElementById("botonComprar")
-    const carrito = []
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || []
+    let listaDeProductos = []
+
+    fetch("./productos.json")
+        .then(Response => Response.json())
+        .then(data => {
+            listaDeProductos = data
+        })
 
     function mostrarMensaje(mensaje, tipo) {
         const mensajeUsuario = document.getElementById("mensajeUsuario")
@@ -66,9 +66,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 3000)
     }
 
+    function actualizarLocalStorage() {
+        localStorage.setItem("carrito", JSON.stringify(carrito))
+    }
+
     botonComprar.addEventListener("click", function () {
         if (carrito.length > 0) {
             carrito.length = 0
+            actualizarLocalStorage()
             contenedorCarrito.innerHTML = " "
             contenedorCarrito.classList.add("oculto")
             mostrarMensaje("¡Gracias por tu compra!")
@@ -76,8 +81,25 @@ document.addEventListener("DOMContentLoaded", function () {
             mostrarMensaje("No hay productos en el carrito")
         }
     })
-    
+
     function agregarAlCarrito(producto) {
+        Toastify({
+            text: "PRODUCTO AGREGADO AL CARRITO",
+            duration: 3000,
+            close: false,
+            gravity: "top", // `top` or `bottom`
+            position: "right", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                borderRadius: "2rem",
+            },
+            offset: {
+                x: "1.5rem", // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                y: "1.5rem" // vertical axis - can be a number or a string indicating unity. eg: '2em'
+            },
+            onClick: function () { } // Callback after click
+        }).showToast();
         if (producto.stock > 0) {
             const productoExistenteIndex = carrito.findIndex(item => item.nombre === producto.nombre)
             if (productoExistenteIndex !== -1) {
@@ -86,14 +108,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 carrito.push({ ...producto, cantidad: 1 })
             }
             producto.stock--
-            mostrarMensaje("Producto agregado al carrito", "exito")
             actualizarCarrito()
+            actualizarLocalStorage()
         } else {
-            mostrarMensaje("¡Este producto está fuera de stock!", "error")
+            mostrarMensaje("¡Este producto está fuera de stock!")
         }
     }
 
-    
+
     function actualizarCarrito() {
         contenedorCarrito.innerHTML = ""
         carrito.forEach(producto => {
@@ -101,39 +123,68 @@ document.addEventListener("DOMContentLoaded", function () {
             elementoProducto.innerHTML = `
                 <span>${producto.nombre} - $${producto.precio} - Cantidad: ${producto.cantidad}</span>
                 <button class="eliminar" data-nombre="${producto.nombre}">Eliminar</button>
-            `;
+            `
             contenedorCarrito.appendChild(elementoProducto)
-        });
+        })
     }
 
-    
+
     botonVerOcultar.addEventListener("click", function () {
         contenedorCarrito.classList.toggle("oculto")
     })
 
-    
 
-    
+
+
     document.addEventListener("click", function (event) {
         if (event.target.classList.contains("agregar")) {
             const nombreProducto = event.target.parentElement.querySelector("h2").textContent
             const producto = listaDeProductos.find(item => item.nombre === nombreProducto)
             if (producto) {
                 agregarAlCarrito(producto)
-            } 
-        }
-    })
-
-    
-    contenedorCarrito.addEventListener("click", function (event) {
-        if (event.target.classList.contains("eliminar")) {
-            const nombreProducto = event.target.dataset.nombre
-            const index = carrito.findIndex(item => item.nombre === nombreProducto)
-            if (index !== -1) {
-                carrito.splice(index, 1)
-                actualizarCarrito()
             }
         }
     })
+
+
+    contenedorCarrito.addEventListener("click", function (event) {
+        Swal.fire({
+            title: "¿Estas seguro?",
+            icon: "question",
+            html: `
+              se eliminará este producto
+            `,
+            showCancelButton: true,
+            focusConfirm: false,
+            confirmButtonText: `Si`,
+            cancelButtonText: `No`
+        })
+            .then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    if (event.target.classList.contains("eliminar")) {
+                        const nombreProducto = event.target.dataset.nombre
+                        const index = carrito.findIndex(item => item.nombre === nombreProducto)
+                        if (index !== -1) {
+                            carrito.splice(index, 1)
+                            actualizarCarrito()
+                            actualizarLocalStorage()
+                        }
+                    }
+                }
+            })
+    })
+
+
+
+    actualizarCarrito()
+
 })
+
+
+
+
+
+
+
 

@@ -1,0 +1,8 @@
+[
+    { "nombre": "Whisky Bourbon", "precio": 5000, "stock": 3 },
+    { "nombre": "Whisky Irlandes", "precio": 4500, "stock": 2 },
+    { "nombre": "Licores Frutales", "precio": 2500, "stock": 8 },
+    { "nombre": "Gaseosas 500ml", "precio": 1200, "stock": 10 },
+    { "nombre": "Pulpa De Frutilla", "precio": 2000, "stock": 5 },
+    { "nombre": "Energizante", "precio": 1000, "stock": 6 }
+]
